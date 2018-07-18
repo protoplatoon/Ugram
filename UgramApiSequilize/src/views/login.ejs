@@ -1,0 +1,87 @@
+<body>
+      <!-- <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> -->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <div class="col-xs-12">
+        <div class="row">
+          <form class="center" id="login" action="/login" method="post">
+            <div>
+              <label>Username:</label>
+              <input type="text" name="username" />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input type="password" name="password" />
+            </div>
+            <div>
+              <button id="button" type="submit" class="btn btn-primary">Sign in</button>
+              <a href="/register" class="btn btn-primary"><span class="button"></span> Register</a>
+            </div>
+            <div>
+                <%if (message.length > 0) { %>
+                  <p>Error: <%= message %></p>
+                <% } %>
+            </div>
+          </form>
+          <div>
+          </div>
+          <!-- <a href="/sms" class="btn btn-primary"><span class="button"></span> SMS</a> -->
+        </div>
+        <div>
+          <p>Login or Register with:</p>
+          <a href="/auth/facebook" class="btn btn-primary">
+            <span class="fa fa-facebook">Facebook</span>
+          </a>
+          <a href="/auth/google" class="btn btn-primary">
+            <span class="fa fa-google">Google</span>
+          </a>
+        </div>
+      </div>
+</body>
+
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=1644441632245482';
+	fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+//   $(document).ready(function () {
+//       $("#button").click(function () {
+//         //first email list
+//         var username = $("#username").val();
+//         var password = $("#password").val();
+//         var isValid = true;
+//         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+//         //validate user
+//         if (username == "" && !emailReg.test(username)) {
+//           $("#username_error").text("User name is required");
+// /*            $("#username_error").fadeOut(4000); */
+//           isValid = false;
+//         } else {
+//           $("#username").next().text("");
+//         }
+
+//         //validate password
+//         if (password == "") {
+//           $("#password_error").text("Password is required");
+//           isValid = false;
+//         } else {
+//           $("#password_error").text("");
+//         }
+  
+//         //submit the form
+//         if (isValid) {
+//           $("#login").submit();
+//         }
+//       });
+//       //focus the cursor on the first email address
+//       $("#username").focus();
+//     });
+</script>

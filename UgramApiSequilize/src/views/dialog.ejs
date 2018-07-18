@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <p>
+      Hi <%= user.name %>!
+    </p>
+    <p>
+      <b>
+        <%= client.name %>
+      </b> is requesting access to your account.
+    </p>
+    <p>Do you approve?</p>
+    <form action="/dialog/authorize/decision" method="post">
+      <input name="transaction_id" type="hidden" value="<%= transactionId %>" />
+      <div>
+        <button type="submit" class="btn btn-primary" value="Allow" name="Allow" id="allow" >Allow</button>
+        <button type="submit" class="btn btn-error" value="Deny" name="cancel" id="deny">Cancel</button>
+      </div>
+    </form>
+  </body>
+  <script>
+  </script>
+  <style>
+    body {
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+    input {
+      margin: 5px;
+    }
+  </style>
+</html>

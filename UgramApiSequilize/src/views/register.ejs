@@ -1,0 +1,96 @@
+<html>
+  <body>
+    <!-- <link rel="stylesheet" href="/public/login.css"> -->
+    <!-- function validateEmail($email) { var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; return emailReg.test( $email ); }-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="col-xs-12">
+      <div class="row">
+      <form class="center" id="register" action="/register" method="post">
+        <div>
+          <label>Username :</label>
+          <input type="text" id="username" name="username" /><span id="username_error"></span>
+        </div>
+        <div>
+          <label>Password :</label>
+          <input type="password" id="password" name="password" /><span id="password_error"></span>
+        </div>
+        <div>
+            <label>Repeat :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="password" id="password_repeat" name="password_repeat"/><span id="password_repeat_error"></span>
+        </div>
+        <div>
+            <button id="button" type="submit" class="btn btn-primary" > Sign up</button>
+            <a href="/login" class="btn btn-primary"><span class="button"></span> Sign in</a>
+        </div>
+      </form>
+      <div>
+        <%if (message.length > 0) { %>
+          <p>Error: <%= message %></p>
+        <% } %>
+      </div>
+    </div>
+    </div>
+
+    <p>Login or Register with:</p>
+	  <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+    <a href="/auth/google" class="btn btn-primary">
+      <span class="fa fa-google">Google</span>
+    </a>
+  </body>
+  <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=1644441632245482';
+    fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+  </script>
+   <script>
+    $(document).ready(function () {
+        $("#button").click(function () {
+          //first email list
+          var username = $("#username").val();
+          var password = $("#password").val();
+          var password_repeat = $ ("#password_repeat").val();
+          var isValid = true;
+           var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+          //validate user
+          if (username == "" && !emailReg.test(username)) {
+            $("#username_error").text("Username is required");
+            isValid = false;
+          } else {
+            $("#username").next().text("");
+          }
+
+          //validate password
+          if (password == "") {
+            $("#password_error").text("Password is required");
+            isValid = false;
+          } else {
+            $("#password_error").text("");
+          }
+    
+            //validate password
+          if (password_repeat == "") {
+            $("#password_repeat_error").text("Password is required");
+            isValid = false;
+          } else {
+            $("#password_repeat_error").text("");
+          }
+          
+          //submit the form
+          if (isValid) {
+            $("#register").submit();
+          }
+        });
+        //focus the cursor on the first email address
+        $("#username").focus();
+      });
+    </script>
+</html>

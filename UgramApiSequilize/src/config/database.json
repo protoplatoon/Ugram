@@ -1,0 +1,25 @@
+{
+    "development": {
+        "database": "developmentDB",
+        "username": "developer",
+        "password": "password",
+        "dialect": "sqlite",
+        "host": "localhost",
+        "dialectOptions": {
+        },
+        "storage": "database.sqlite",
+        "omitNull": false,
+        "native": false,
+        "sync": {
+            "force": true
+        }
+    },
+    "production": {
+        "dialect": "mysql",
+        "host": "aardx2pdoy85f9.cwd92f0xljuu.us-east-1.rds.amazonaws.com",
+        "port": "3306",
+        "username": "ugram",
+        "password": "Epitech42",
+        "database": "ugram"
+    }
+}

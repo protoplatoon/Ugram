@@ -1,0 +1,888 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Ugram Api",
+    "description": "Api for Ugram Project",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users in system",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Get Specific page",
+            "type": "number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "description": "number of items per page",
+            "type": "number"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Value of your generic search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request OK",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "Return user info",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Delete user with given ID",
+        "tags": [
+                      "Users"
+                ],
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      },
+      "put": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Update user with give ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    },
+
+
+    "/pictures": {
+      "get": {
+        "tags": [
+          "Pictures"
+        ],
+        "summary": "Get all pictures",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Get Specific picture page",
+            "type": "number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "description": "number of items per page",
+            "type": "number"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Value of your generic search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request OK",
+            "schema": {
+              "$ref": "#/definitions/Pictures"
+            }
+          }
+        }
+      }
+    },
+
+
+
+    "/users/{userId}/pictures": {
+      "get": {
+        "tags": [
+          "User Pictures API"
+        ],
+        "summary": "Get all user's pictures",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Get Specific picture page",
+            "type": "number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "description": "number of items per page",
+            "type": "number"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Value of your generic search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request OK",
+            "schema": {
+              "$ref": "#/definitions/Pictures"
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Add picture",
+        "tags": [
+          "User Pictures API"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Descritpion of new picture",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "tags",
+            "in": "formData",
+            "description": "tags of new picture ex: #a #b",
+            "type": "array",
+            "items": {
+              "type": "string"  
+            },
+            "required": false
+          },
+          {
+            "name": "mentions",
+            "in": "formData",
+            "description": "mention of new picture ex: @a @b",
+            "type": "array",
+            "items": {
+              "type": "string"  
+            },
+            "required": false
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "description": "the picture to upload",
+            "type": "file"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Picture add"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    },
+
+    
+    "/users/{userId}/notifications": {
+      "get": {
+        "tags": [
+          "User Pictures API"
+        ],
+        "summary": "Get all notification of a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request OK",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          },
+          "404": {
+            "description": "UserId Not found"
+          }
+        }
+      },
+      "post": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Add picture",
+        "tags": [
+          "User Pictures API"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification read"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    },
+
+
+    "/users/{userId}/pictures/{pictureId}": {
+      "get": {
+        "tags": [
+          "User Pictures API"
+        ],
+        "summary": "Get a single picture",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "pictureId",
+            "in": "path",
+            "required": true,
+            "description": "picture id",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request OK",
+            "schema": {
+              "$ref": "#/definitions/Picture"
+            }
+          },
+          "404": {
+            "description": "User or Picture Id Not found"
+          }
+        }
+      },
+      "put": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Edits the fields of a picture for a user",
+        "tags": [
+          "User Pictures API"
+        ],
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "pictureId",
+            "in": "path",
+            "required": true,
+            "description": "picture id",
+            "type": "number"
+          },
+          {
+            "name": "picture",
+            "in": "body",
+            "required": true,
+            "description": "Picture with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/PictureEdit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Picture is updated"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User or Picture Id Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      },
+      "delete": {
+        "description" : "Need ?access_token=XXXXXtokenXXXX in path request or Authorization: Bearer XXtokenXX in header",
+        "summary": "Delete user with given ID",
+        "tags": [
+          "User Pictures API"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "type": "string"
+          },
+          {
+            "name": "pictureId",
+            "in": "path",
+            "required": true,
+            "description": "picture id",
+            "type": "number"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "description": "XXXtokenXXX",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Picture is deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User or Picture Id Not found"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    
+    },
+
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Login - Register OAuth2"
+        ],
+        "summary": "Login - Get new token",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ]
+        ,
+        "parameters": [ 
+          {
+              "name": "username",
+              "in": "formData",
+              "required": true,
+              "description": "username",
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "required": true,
+              "description": "password",
+              "type": "string"
+            },
+            {
+              "name": "client_id",
+              "in": "formData",
+              "required": true,
+              "description": "client id oauth",
+              "type": "string",
+              "value": "abc123"
+            },
+            {
+              "name": "client_secret",
+              "in": "formData",
+              "required": true,
+              "description": "client secret oauth",
+              "type": "string",
+              "value": "ssh-password"
+            },
+            {
+              "name": "grant_type",
+              "in": "formData",
+              "required": true,
+              "description": "Value of your generic search",
+              "type": "string",
+              "value": "password"
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "Request token",
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          } ,
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "501": {
+            "description": "Bad grand_type"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    },
+
+    "/oauth/register": {
+      "post": {
+        "tags": [
+          "Login - Register OAuth2"
+        ],
+        "summary": "register new client",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+              "name": "username",
+              "in": "formData",
+              "required": true,
+              "description": "username",
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "required": true,
+              "description": "password",
+              "type": "string"
+            },
+            {
+              "name": "client_id",
+              "in": "formData",
+              "required": true,
+              "description": "client id oauth",
+              "type": "string",
+              "value": "abc123"
+            },
+            {
+              "name": "client_secret",
+              "in": "formData",
+              "required": true,
+              "description": "client secret oauth",
+              "type": "string",
+              "value": "ssh-password"
+            },
+            {
+              "name": "grant_type",
+              "in": "formData",
+              "required": true,
+              "description": "Value of your generic search",
+              "type": "string",
+              "value": "password"
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "Register new User"
+          } ,
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+            {
+                "login": []
+            }
+        ]
+      }
+    }
+    
+
+  },
+
+  "definitions": {
+    "User": {
+      "required": [
+        "email",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "number"
+        },
+        "pictureUrl": {
+          "type": "string"
+        },
+        "registrationDate": {
+          "type": "number"
+        }
+      }
+    },
+    "Users": {
+      "properties": {
+        "totalEntries": {
+          "type": "number"
+        },
+        "totalPages": {
+          "type": "number"
+        },
+        "items":  {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User"  
+            }
+          }
+      }
+    },
+    "Like": {
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "Picture": {
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "number",
+          "uniqueItems": true
+        },
+        "createdDate": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "mentions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "url": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Like"
+          }
+        },
+        "nbLike": {
+          "type": "number"
+        }
+      }
+    },
+    "PictureEdit": {
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "mentions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Comment": {
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Notification": {
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Pictures": {
+      "properties": {
+        "totalEntries": {
+          "type": "number"
+        },
+        "totalPages": {
+          "type": "number"
+        },
+        "items":  {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Picture"  
+            }
+          }
+      }
+    },
+    "Token": {
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        },
+        "token_type" : {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

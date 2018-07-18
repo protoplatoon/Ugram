@@ -1,0 +1,190 @@
+/* Style the Image Used to Trigger the Modal */
+#img {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#img:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    overflow-y: auto;
+}
+
+// .modal-body {
+//     max-height: calc(100vh - 210px);
+//     overflow-y: auto;
+// }
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    //width: 80%;
+    max-width: 900px;
+    max-height: 900px;
+}
+
+.modal-content, #img {
+    max-height: 80vh;
+    height: auto;
+}
+
+/* description of Modal Image  */
+#description {
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.myColor {
+    color: antiquewhite;
+}
+
+.inline {
+    color: antiquewhite;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #description {
+    animation-name: zoom;
+    animation-duration: 0.5s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nbLike {
+    display: inline-flex;
+    color: lightcyan;
+}
+
+.scroll {
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.comment {
+   //padding: 4px;
+  // margin: 4px;
+   background: grey;
+   border-radius: 4px;
+   max-width: 270px!important;
+   width: 110%;
+   min-width: 250px;
+}
+
+.comments {
+    max-width: 420px;
+    max-height: 500px;
+}
+
+.addComment {
+    max-width: 80%;
+    float: left;
+    padding: 10px;
+}
+
+.orange {
+    background: transparent;
+    color: orange;
+    border: none;
+}
+
+.blanc {
+    background: transparent;
+    border: none;
+    color:white;
+}
+
+.gris {
+    background: transparent;
+    border: none;
+    color:gray;
+}
+
+.red {
+    background: transparent;
+    border: none;
+    color:red;
+}
+
+.blue {
+    background: transparent;
+    border: none;
+    color:dodgerblue;
+}
+
+.deleteComment {
+    // ici faut reussir a mettre la poubelle pour supprimer un commentaire en haut a droite du comment genre
+    float: right;
+    
+}
+
+.download-size {
+    padding-left: 10px;
+    max-width: 100%;
+    display: inline-flex;
+}
+
+@media only screen and (max-width: 700px){
+    .comments {
+        max-width: 400px;
+        max-height: 300px;
+    }
+}
+
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        //width: 80%;
+        max-height: 90%;
+        max-width: 50%;
+    }
+}
+
